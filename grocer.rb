@@ -56,7 +56,7 @@ end
 #   cart << item_with_coupon
 # end
 
-# def coupon_hash(hash)
+def coupon_hash(hash)
   prc = hash[:cost].to_f/hash[:num].to_f.round(2)
   {
     :item=>"#{hash[:item]} W/COUPON", 
