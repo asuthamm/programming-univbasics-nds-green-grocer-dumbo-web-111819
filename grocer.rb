@@ -56,24 +56,24 @@ end
 #   cart << item_with_coupon
 # end
 
-def apply_coupons(cart, coupons)
-  i=0
-  while i < coupons.length
-    coupon = coupons[i][:item]
-    # iterate thru coupons & check if the item is in the cart
-    coupon_item = find_item_by_name_in_collection(coupon, cart)
-    # if !!coupon_item == true meaining coupon item found in the cart and qty is valid (> qty specified in coupon) then adjust qty
+# def apply_coupons(cart, coupons)
+#   i=0
+#   while i < coupons.length
+#     coupon = coupons[i][:item]
+#     # iterate thru coupons & check if the item is in the cart
+#     coupon_item = find_item_by_name_in_collection(coupon, cart)
+#     # if !!coupon_item == true meaining coupon item found in the cart and qty is valid (> qty specified in coupon) then adjust qty
 
-    if !!coupon_item && (coupon_item[:count] >= coupons[i][:num])
-      coupon_item[:count] = coupon_item[:count] - coupons[i][:num]
-      coupon_applied_item =  mk_coupon_hash(coupons[i])
-      coupon_applied_item[:clearance] = coupon_item[:clearance]
-      cart.push(coupon_applied_item)
-    end
-    i+= 1
-  end
-  cart
-end
+#     if !!coupon_item && (coupon_item[:count] >= coupons[i][:num])
+#       coupon_item[:count] = coupon_item[:count] - coupons[i][:num]
+#       coupon_applied_item =  mk_coupon_hash(coupons[i])
+#       coupon_applied_item[:clearance] = coupon_item[:clearance]
+#       cart.push(coupon_applied_item)
+#     end
+#     i+= 1
+#   end
+#   cart
+# end
 
 
 
