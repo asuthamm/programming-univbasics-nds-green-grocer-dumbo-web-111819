@@ -102,26 +102,22 @@ def apply_clearance(cart)
 end
 
 
-
-
 def checkout(cart, coupons)
-  total = 0
-  i = 0
 
-  ccart = consolidate_cart(cart)
-  apply_coupons(ccart, coupons)
-  apply_clearance(ccart)
+  consolodated_cart = consolidate_cart(cart)
+  coupons_cart = apply_coupons(consolodated_cart, coupons)
+  clearance_cart = apply_clearance(coupons_cart)
 
-  while i < ccart.length do
-    total += items_total_cost(ccart[i])
+  total = 0.0
+  i=0
+  while i < clearance_cart.length
+      total += clearance_cart[i][:price].to_f * clearance_cart[i][:count].to_f
     i += 1
   end
-
-  total >= 100 ? total * (1.0 - BIG_PURCHASE_DISCOUNT_RATE) : total
-end
-
-# Don't forget, you can make methods to make your life easy!
-
-def items_total_cost(i)
-  i[:count] * i[:price]
+  
+  if total > 100 
+    return (total.to_f * 0.8).round(2)
+  else
+    return total
+  end
 end
